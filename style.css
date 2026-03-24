@@ -12,7 +12,8 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
+    padding: 15px; /* Ye app ko phone ke edges se thoda door rakhega */
 }
 
 /* Chat Container */
@@ -32,7 +33,7 @@ body {
 /* Header */
 .chat-header {
     background-color: #1a1a1a;
-    padding: 20px;
+    padding: 15px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -58,13 +59,13 @@ body {
 }
 
 /* Scrollbar chupane ke liye sleek design */
-.chat-box::-webkit-scrollbar { width: 5px; }
+.chat-box::-webkit-scrollbar { width: 4px; }
 .chat-box::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
 
 /* Messages */
 .message {
     display: flex;
-    max-width: 80%;
+    max-width: 85%; /* Phone par message thoda aur space lega */
 }
 
 .ai-message { align-self: flex-start; }
@@ -75,6 +76,7 @@ body {
     border-radius: 15px;
     font-size: 0.95rem;
     line-height: 1.5;
+    word-wrap: break-word; /* Lamba text box ke bahar nahi jayega */
 }
 
 .ai-message .bubble {
@@ -90,18 +92,22 @@ body {
     border-bottom-right-radius: 2px;
 }
 
-/* Input Area */
+/* Input Area - MAIN FIX FOR MOBILE */
 .input-area {
-    padding: 20px;
+    padding: 15px;
     background-color: #1a1a1a;
     display: flex;
     gap: 10px;
+    align-items: center; /* Dono (text box aur button) ek level par rahenge */
     border-top: 1px solid #333;
+    width: 100%;
 }
 
 #userInput {
     flex: 1;
-    padding: 15px;
+    min-width: 0; /* CRITICAL FIX: Ye text box ko flex container ke bahar jane se rokta hai */
+    width: 100%;
+    padding: 12px 20px;
     border-radius: 30px;
     border: none;
     background-color: #222;
@@ -116,12 +122,16 @@ body {
     background-color: #00ff88;
     color: #000;
     border: none;
-    width: 50px;
-    height: 50px;
+    width: 45px; /* Phone ke hisaab se perfect size */
+    height: 45px;
     border-radius: 50%;
     cursor: pointer;
     font-size: 1.2rem;
     transition: 0.3s;
+    flex-shrink: 0; /* CRITICAL FIX: Ye button ko kabhi chota ya cut nahi hone dega */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-#sendBtn:hover { transform: scale(1.1); }
+#sendBtn:hover { transform: scale(1.05); }
